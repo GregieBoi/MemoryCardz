@@ -1,2 +1,2 @@
 # OnMyShelf
-COP4331C Large Project repository
+COP4331 Large Project repository

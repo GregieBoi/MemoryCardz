@@ -1,21 +1,30 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import decode from "jwt-decode";
+
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import { useNavigate } from 'react-router-dom';
 
 function Login()
 {
   var bp = require('./Path.js');
 
-  var loginName;
-  var loginPassword;
+  const loginName = useRef();
+  const loginPassword = useRef();
 
   const [message,setMessage] = useState('');
+  const navigate = useNavigate();
 
   const doLogin = async event => 
   {
       event.preventDefault();
 
-      var obj = {username:loginName.value,password:loginPassword.value};
-      var js = JSON.stringify(obj);
+      const obj = {
+        username: loginName.current?.value,
+        password: loginPassword.current?.value
+      };
+      const js = JSON.stringify(obj);
 
       try
       {    
@@ -45,35 +54,42 @@ function Login()
                localStorage.setItem('user_data', JSON.stringify(user));
   
                setMessage('');
-               window.location.href = '/home';
+               navigate("/home");
              }
           }
           catch(e)
           {
-            console.log( e.toString() );
+            console.error(e);
             return("");
           }
       }
       catch(e)
       {
-        console.log( e.toString() );
+        console.error(e);
         return("");
       }    
   };
   
     return(
-      <div id="loginDiv">
-        <form onSubmit={doLogin}>
-        <span id="inner-title">PLEASE LOG IN</span><br />
-        <input type="text" id="loginName" placeholder="Username" 
-          ref={(c) => loginName = c} /><br />
-        <input type="password" id="loginPassword" placeholder="Password" 
-          ref={(c) => loginPassword = c} />
-        <input type="submit" id="loginButton" class="buttons" value = "Do It"
-          onClick={doLogin} />
-        </form>
-        <span id="loginResult">{message}</span>
-     </div>
+      <Container className="justify-content-md-center" style={{marginTop: "20vh"}}>
+        <Container style={{ justifyContent: "center", alignItems: "center", height: "40vh", width:500}} className="bg-light text-black p-5">
+          <Form onSubmit={doLogin}>
+            <h1>Sign In</h1><br />
+              <Form.Group className="mb-3" controlId="formGroupUser" >
+                <Form.Label>Username</Form.Label>
+                <Form.Control type="text" placeholder="Enter username" ref={loginName}/>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formGroupPassword" >
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="Password" ref={loginPassword}/>
+              </Form.Group>
+              <Button variant="primary" type="submit">Submit</Button>
+          </Form>
+          <br />
+          <p>Don't have an account? Make one <a href="/register">here</a>!</p>
+          <span id="loginResult">{message}</span>
+        </Container>
+      </Container>
     );
 };
 

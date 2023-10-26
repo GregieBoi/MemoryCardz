@@ -11,10 +11,10 @@ exports.setApp = function ( app, client ){
       // outgoing: error
         
       // Gets new user info from front end
-      const { firstName, lastName, username, password } = req.body;
+      const { firstName, lastName, username, email, password } = req.body;
     
       // Saves new user info to variables
-      const newUser = {first_name:firstName,last_name:lastName,username:username,password:password};
+      const newUser = {first_name:firstName,last_name:lastName,username:username,email:email,password:password};
       var error = '';
     
       try{
@@ -200,9 +200,9 @@ exports.setApp = function ( app, client ){
     
 
     /*
-     * Search given ID
+     * Retrieve data with ID
      */
-    app.post('/api/searchUsersId', async (req, res, next) => {
+    app.post('/api/searchUserId', async (req, res, next) => {
       // incoming: login, password
       // outgoing: id, firstName, lastName, error
     
@@ -271,7 +271,7 @@ exports.setApp = function ( app, client ){
       res.status(200).json(ret);
     });
 
-    app.post('/api/searchGamesId', async (req, res, next) => {
+    app.post('/api/searchGameId', async (req, res, next) => {
       // incoming: login, password
       // outgoing: id, firstName, lastName, error
     
@@ -328,5 +328,111 @@ exports.setApp = function ( app, client ){
       // Returns status
       res.status(200).json(ret);
     });
+
+    app.post('/api/searchListId', async (req, res, next) => {
+      // incoming: login, password
+      // outgoing: id, firstName, lastName, error
+    
+      // Gets user login from front end
+      const { listId } = req.body;
+      var error = '';
+    
+      // Requests info from back end
+      var ObjectId = require('mongodb').ObjectId;
+      const db = client.db('database');
+      const results = await db.collection('lists').find({_id:(new ObjectId(listId))}).toArray();
+
+      // Sets up variables for login
+      var id = ' ';
+      var name = ' ';
+      var likes = ' ';
+      //var reviews;
+    
+
+      var ret;
+    
+      if( results.length > 0 ){
+        // Saves variables from login
+        id = results[0]._id;
+        name = results[0].list_names;
+        likes = results[0].likes;
+        var listRating = results[0].list_rating;
+        var gameList = results[0].game_list;
+
+        try{
+          /*
+          // Creates new JWT
+          const token = require("./createJWT.js");
+          ret = token.createToken( first, last, id );
+          */
+
+          ret = {id:id, name:name, likes:likes, listRating:listRating, gameList:gameList};
+          
+
+        }catch(e){
+          // Saves error
+          ret = {error:e.message};
+        }
+      }else{
+        // Returns error
+        ret = {error:"No list found"};
+      }
+    
+      // Returns status
+      res.status(200).json(ret);
+    });
+
+    app.post('/api/searchReviewId', async (req, res, next) => {
+      // incoming: login, password
+      // outgoing: id, firstName, lastName, error
+    
+      // Gets user login from front end
+      const { reviewId } = req.body;
+      var error = '';
+    
+      // Requests info from back end
+      var ObjectId = require('mongodb').ObjectId;
+      const db = client.db('database');
+      const results = await db.collection('reviews').find({_id:(new ObjectId(reviewId))}).toArray();
+
+      // Sets up variables for login
+      var id = ' ';
+      var editDate = ' ';
+      var rating = ' ';
+      var textComment = ' ';
+      var gameId = ' ';
+    
+
+      var ret;
+    
+      if( results.length > 0 ){
+        // Saves variables from login
+        id = results[0]._id;
+        editDate = results[0].post_edit_date;
+        rating = results[0].rating;
+        textComment = results[0].text_comment;
+        gameId = results[0].game_id;
+
+        try{
+          /*
+          // Creates new JWT
+          const token = require("./createJWT.js");
+          ret = token.createToken( first, last, id );
+          */
+
+          ret = {id:id, editDate:editDate, rating:rating, text:textComment, gameId:gameId};
+          
+
+        }catch(e){
+          // Saves error
+          ret = {error:e.message};
+        }
+      }else{
+        // Returns error
+        ret = {error:"No game found"};
+      }
+    
+      // Returns status
+      res.status(200).json(ret);
+    });
 }
-//a

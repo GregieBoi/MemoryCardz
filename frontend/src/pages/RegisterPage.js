@@ -6,6 +6,7 @@ const RegisterPage = () =>
     return(
         <div>
             <Register />
+            <style>{'body { background-color: #343434; }'}</style>
         </div>
     );
 };

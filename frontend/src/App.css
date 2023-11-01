@@ -28,6 +28,30 @@
   color: #61dafb;
 }
 
+.button-block {
+  min-width: 100%;
+  width: 100%;
+}
+
+.navbar, .navbar-default{
+  height: 15vh !important; 
+}
+
+.btn-primary {
+  background-color: #FF0000 !important;
+  border: none !important;
+}
+
+.button-block {
+  min-width: 100%;
+  width: 100%;
+  background-color: #FF0000;
+  color: #FF0000;
+}
+
+#welcomeText{
+  font-size: 30px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

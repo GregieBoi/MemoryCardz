@@ -1,30 +1,40 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import PageTitle from './PageTitle';
 
-function NavBar()
-{
-    return(
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">Navbar</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                  </li>
-                  <li class="nav-item">
-                  </li>
-                  <li class="nav-item">
-                  </li>
-                  <li class="nav-item">
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-    );
+function NavBar() {
+  return (
+    <Navbar collapseOnSelect expand="lg" style={{backgroundSize: "0", backgroundColor: "#1B1A1A"}}
+    className="mb-auto">
+      <Container className='ml-auto'>
+        <Navbar.Brand href="../home" className='ml'><PageTitle /></Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
+          </Nav>
+          <Nav>
+            <Nav.Link> <Link to="/">GAMES</Link> </Nav.Link>
+            <Nav.Link> ACTIVITY </Nav.Link>
+            <Nav.Link> PROFILE </Nav.Link>
+          </Nav>
+          <Form className="d-flex">
+            <Form.Control
+              type="search"
+              placeholder="Search"
+              className="me-2"
+              aria-label="Search"
+            />
+            <Button variant="outline-success">Search</Button>
+          </Form>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 };
 
 export default NavBar;
-       

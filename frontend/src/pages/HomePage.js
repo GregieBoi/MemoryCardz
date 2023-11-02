@@ -11,6 +11,7 @@ const HomePage = () =>
             <PageTitle />
             <LoggedInName />
             <GameUI />
+            <style>{'body { background-color: #343434; }'}</style>
         </div>
     );
 }

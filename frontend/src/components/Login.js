@@ -29,9 +29,10 @@ function Login() {
         { method: 'POST', body: js, headers: { 'Content-Type': 'application/json' } });
 
       var res = JSON.parse(await response.text());
+      console.log(JSON.stringify(res, null, 4));
       var storage = require('../tokenStorage.js');
       storage.storeToken(res);
-      const { accessToken } = res;
+      const { JWT:{accessToken} } = res;
       const decoded = decode(accessToken, { complete: true });
 
       try {

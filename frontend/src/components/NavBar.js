@@ -14,11 +14,11 @@ function NavBar() {
       <Container className='ml-auto'>
         <Navbar.Brand href="../home" className='ml'><PageTitle /></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
+        <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
           <Nav className="me-auto">
           </Nav>
           <Nav>
-            <Nav.Link> <Link to="/">GAMES</Link> </Nav.Link>
+            <Nav.Link> GAMES </Nav.Link>
             <Nav.Link> ACTIVITY </Nav.Link>
             <Nav.Link> PROFILE </Nav.Link>
           </Nav>

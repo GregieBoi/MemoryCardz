@@ -36,7 +36,7 @@ function Register() {
         var res = JSON.parse(await response.text());
         var storage = require('../tokenStorage.js');
         storage.storeToken(res);
-        const { accessToken } = res;
+        const { JWT:{accessToken} } = res;
         const decoded = decode(accessToken, { complete: true });
 
         var ud = decoded;
@@ -59,7 +59,7 @@ function Register() {
 
     return (
         <Container className="justify-content-md-center" style={{ marginTop: "20vh", marginBottom: "20vh" }}>
-            <Container style={{ justifyContent: "center", alignItems: "center", height: "60vh", width: 500 }} className="bg-light text-black p-5">
+            <Container style={{ justifyContent: "center", alignItems: "center", height: "70vh", width: "30vw", backgroundColor: '#8C8C8C', borderRadius: '5px' }} className="p-5">
                 <Form onSubmit={doRegister}>
                     <h1>Create New User</h1><br />
                     <Form.Group className="mb-3" controlId="formGroupFirst">

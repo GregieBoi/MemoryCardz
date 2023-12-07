@@ -1,12 +1,12 @@
 import React from 'react'
-import Register from '../components/Register';
+import Verify from '../components/Verify';
 
-const RegisterPage = () => {
+const VerificationPage = () => {
     return (
         <div>
-            <Register />
+            <Verify />
             <style>{'body { background-color: #343434; }'}</style>
         </div>
     );
 };
-export default RegisterPage;
+export default VerificationPage;

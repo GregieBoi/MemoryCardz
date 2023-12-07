@@ -1,9 +1,8 @@
 import React from 'react';
 import NavBar from "../components/NavBar"
 import Welcome from '../components/Welcome';
-import NewReel from '../components/NewReel';
-import Popular from '../components/Popular';
-import NewFromFriends from '../components/NewFromFriends';
+import PopularReel from '../components/PopularReel';
+import FriendsReel from '../components/FriendsReel';
 
 const LandingPage = () => {
   return (
@@ -11,10 +10,8 @@ const LandingPage = () => {
       <style>{'body { background-color: #343434; }'}</style>
       <NavBar />
       <Welcome />
-      <Popular />
-      <NewReel />
-      <NewFromFriends />
-      <NewReel />
+      <PopularReel />
+      <FriendsReel />
     </div>
   );
 };

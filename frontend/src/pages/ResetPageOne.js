@@ -1,12 +1,12 @@
 import React from 'react'
-import Register from '../components/Register';
+import ResetOne from '../components/ResetOne';
 
-const RegisterPage = () => {
+const ResetPageOne = () => {
     return (
         <div>
-            <Register />
+            <ResetOne />
             <style>{'body { background-color: #343434; }'}</style>
         </div>
     );
 };
-export default RegisterPage;
+export default ResetPageOne;

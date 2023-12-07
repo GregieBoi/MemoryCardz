@@ -3,7 +3,7 @@ import React from 'react';
 function LoggedInName()
 {
 	
-    var _ud = localStorage.getItem('user_data');
+    var _ud = localStorage.getItem('user');
     var ud = JSON.parse(_ud);
     //var userId = ud.id;
     var firstName = ud.firstName;
@@ -13,7 +13,7 @@ function LoggedInName()
     {
 	    event.preventDefault();
 
-        localStorage.removeItem("user_data")
+        localStorage.removeItem("user")
         window.location.href = '/';
 
     };    
@@ -21,7 +21,7 @@ function LoggedInName()
   return(
    <div id="loggedInDiv">
    <span id="userName">Logged In As {firstName} {lastName}</span><br />
-   <button type="button" id="logoutButton" class="buttons" 
+   <button type="button" id="logoutButton" 
      onClick={doLogout}> Log Out </button>
    </div>
   );
